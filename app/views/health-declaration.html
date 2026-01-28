@@ -1,0 +1,160 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Health and safety declaration - Book lunar work travel - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/travel-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Health and safety declaration</h1>
+
+      <p class="govuk-body">Before booking your lunar travel, you must read and accept the following health and safety information.</p>
+
+      <form class="form" action="/check-answers" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "Lunar Health Assessment certificate number",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "This is shown on your Lunar Health Assessment certificate. For example, LHA-2026-123456."
+          },
+          id: "health-certificate-number",
+          name: "health-certificate-number",
+          value: data['health-certificate-number'],
+          classes: "govuk-input--width-20",
+          spellcheck: false
+        }) }}
+
+        {{ govukDateInput({
+          id: "health-certificate-date",
+          namePrefix: "health-certificate-date",
+          fieldset: {
+            legend: {
+              text: "Date your Lunar Health Assessment was completed",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "The assessment must have been completed within the last 12 months. For example, 27 3 2025."
+          },
+          items: [
+            {
+              name: "day",
+              classes: "govuk-input--width-2",
+              value: data['health-certificate-date-day']
+            },
+            {
+              name: "month",
+              classes: "govuk-input--width-2",
+              value: data['health-certificate-date-month']
+            },
+            {
+              name: "year",
+              classes: "govuk-input--width-4",
+              value: data['health-certificate-date-year']
+            }
+          ]
+        }) }}
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-6">Emergency contact</h2>
+
+        <p class="govuk-body">Provide details of someone we can contact in case of an emergency.</p>
+
+        {{ govukInput({
+          label: {
+            text: "Emergency contact name"
+          },
+          id: "emergency-contact-name",
+          name: "emergency-contact-name",
+          value: data['emergency-contact-name']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Relationship to you"
+          },
+          hint: {
+            text: "For example, spouse, parent, sibling, friend."
+          },
+          id: "emergency-contact-relationship",
+          name: "emergency-contact-relationship",
+          value: data['emergency-contact-relationship'],
+          classes: "govuk-input--width-20"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Emergency contact telephone number"
+          },
+          id: "emergency-contact-phone",
+          name: "emergency-contact-phone",
+          value: data['emergency-contact-phone'],
+          type: "tel",
+          classes: "govuk-input--width-20"
+        }) }}
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-6">Declaration</h2>
+
+        {{ govukWarningText({
+          text: "Lunar travel involves inherent risks including exposure to radiation, reduced gravity effects, and isolation. You should only proceed if you fully understand and accept these risks.",
+          iconFallbackText: "Warning"
+        }) }}
+
+        {{ govukCheckboxes({
+          name: "declarations",
+          fieldset: {
+            legend: {
+              text: "Please confirm the following",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "health-fit",
+              text: "I confirm that I am in good health and have disclosed all medical conditions to my Lunar Health Assessment examiner",
+              checked: checked("declarations", "health-fit")
+            },
+            {
+              value: "understand-risks",
+              text: "I understand the risks associated with lunar travel and work, including radiation exposure, muscle and bone density loss, and psychological effects of isolation",
+              checked: checked("declarations", "understand-risks")
+            },
+            {
+              value: "completed-training",
+              text: "I confirm that I have completed or will complete the mandatory pre-flight safety training before departure",
+              checked: checked("declarations", "completed-training")
+            },
+            {
+              value: "information-accurate",
+              text: "I confirm that all information I have provided is accurate and complete to the best of my knowledge",
+              checked: checked("declarations", "information-accurate")
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

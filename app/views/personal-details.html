@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Your personal details - Book lunar work travel - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/eligibility/health-assessment"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Your personal details</h1>
+
+      <form class="form" action="/contact-details" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "First name",
+            classes: "govuk-label--m"
+          },
+          id: "first-name",
+          name: "first-name",
+          value: data['first-name'],
+          autocomplete: "given-name"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Last name",
+            classes: "govuk-label--m"
+          },
+          id: "last-name",
+          name: "last-name",
+          value: data['last-name'],
+          autocomplete: "family-name"
+        }) }}
+
+        {{ govukDateInput({
+          id: "date-of-birth",
+          namePrefix: "date-of-birth",
+          fieldset: {
+            legend: {
+              text: "Date of birth",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 27 3 1985"
+          },
+          items: [
+            {
+              name: "day",
+              classes: "govuk-input--width-2",
+              value: data['date-of-birth-day']
+            },
+            {
+              name: "month",
+              classes: "govuk-input--width-2",
+              value: data['date-of-birth-month']
+            },
+            {
+              name: "year",
+              classes: "govuk-input--width-4",
+              value: data['date-of-birth-year']
+            }
+          ]
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "National Insurance number",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "It's on your National Insurance card, benefit letter, payslip or P60. For example, 'QQ 12 34 56 C'."
+          },
+          id: "national-insurance-number",
+          name: "national-insurance-number",
+          value: data['national-insurance-number'],
+          classes: "govuk-input--width-10",
+          spellcheck: false
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "UK passport number",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "Your passport must be valid for at least 2 years from your travel date. It's the 9-digit number in the top right of the photo page."
+          },
+          id: "passport-number",
+          name: "passport-number",
+          value: data['passport-number'],
+          classes: "govuk-input--width-10",
+          spellcheck: false
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Have you passed the Lunar Health Assessment? - Book lunar work travel - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/eligibility/employment-contract"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/eligibility/health-assessment-answer" method="post">
+
+        {{ govukRadios({
+          name: "has-health-assessment",
+          fieldset: {
+            legend: {
+              text: "Have you passed the Lunar Health Assessment?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "The Lunar Health Assessment is a mandatory medical examination that must be completed within the last 12 months."
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes, I have a valid Lunar Health Assessment certificate",
+              checked: checked("has-health-assessment", "yes")
+            },
+            {
+              value: "no",
+              text: "No, I have not completed the assessment",
+              checked: checked("has-health-assessment", "no")
+            }
+          ]
+        }) }}
+
+        {{ govukDetails({
+          summaryText: "How to get a Lunar Health Assessment",
+          html: "<p>Lunar Health Assessments are conducted at approved medical centres across the UK. The assessment takes approximately 4 hours and includes:</p>
+          <ul class='govuk-list govuk-list--bullet'>
+            <li>cardiovascular fitness tests</li>
+            <li>bone density scan</li>
+            <li>psychological evaluation</li>
+            <li>vision and hearing tests</li>
+            <li>blood tests</li>
+          </ul>
+          <p>The assessment costs £450 and must be renewed annually.</p>
+          <p><a href='#'>Find an approved Lunar Health Assessment centre near you</a></p>"
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

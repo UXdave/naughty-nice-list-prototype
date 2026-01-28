@@ -1,0 +1,143 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Booking complete - Book lunar work travel - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukPanel({
+        titleText: "Lunar travel booking complete",
+        html: "Your booking reference<br><strong>LTB-2026-" + ("ABCDEFGHJKLMNPQRSTUVWXYZ23456789" | random) + ("ABCDEFGHJKLMNPQRSTUVWXYZ23456789" | random) + ("ABCDEFGHJKLMNPQRSTUVWXYZ23456789" | random) + ("ABCDEFGHJKLMNPQRSTUVWXYZ23456789" | random) + ("ABCDEFGHJKLMNPQRSTUVWXYZ23456789" | random) + ("ABCDEFGHJKLMNPQRSTUVWXYZ23456789" | random) + "</strong>"
+      }) }}
+
+      <p class="govuk-body">We have sent a confirmation email to <strong>{{ data['email-address'] }}</strong>.</p>
+
+      <h2 class="govuk-heading-m">Your travel details</h2>
+
+      {% set departureLocationText = {
+        "spaceport-cornwall": "Spaceport Cornwall (Newquay)",
+        "sutherland-spaceport": "Sutherland Spaceport",
+        "shetland-space-centre": "Shetland Space Centre",
+        "snowdonia-spaceport": "Snowdonia Aerospace Centre"
+      } %}
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Passenger name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['first-name'] }} {{ data['last-name'] }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Departure date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['departure-date-day'] }}/{{ data['departure-date-month'] }}/{{ data['departure-date-year'] }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Departure location
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ departureLocationText[data['departure-location']] }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Destination
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['lunar-location'] }}, Moon
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Employer
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['employer-name'] }}
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">What happens next</h2>
+
+      <ol class="govuk-list govuk-list--number">
+        <li>
+          <strong>Within 48 hours:</strong> Your employer will be contacted to verify your employment contract. You'll receive an email once this is confirmed.
+        </li>
+        <li>
+          <strong>Within 7 days:</strong> Your Lunar Health Assessment certificate will be verified. If any issues are found, we'll contact you.
+        </li>
+        <li>
+          <strong>21 days before departure:</strong> You'll receive your pre-flight training schedule and spaceport arrival instructions.
+        </li>
+        <li>
+          <strong>7 days before departure:</strong> Your digital boarding pass and final travel documents will be sent to your email address.
+        </li>
+        <li>
+          <strong>48 hours before departure:</strong> You must check in online using your booking reference. You'll receive a reminder via text message.
+        </li>
+      </ol>
+
+      {{ govukWarningText({
+        text: "You must complete mandatory pre-flight safety training before your departure. Failure to complete training will result in your travel being postponed.",
+        iconFallbackText: "Warning"
+      }) }}
+
+      <h2 class="govuk-heading-m">Prepare for your journey</h2>
+
+      <p class="govuk-body">Read our guidance to help you prepare for lunar travel:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li><a class="govuk-link" href="#">What to pack for lunar travel</a></li>
+        <li><a class="govuk-link" href="#">Pre-flight safety training guide</a></li>
+        <li><a class="govuk-link" href="#">Your rights as a lunar worker</a></li>
+        <li><a class="govuk-link" href="#">Health and wellbeing during lunar work assignments</a></li>
+        <li><a class="govuk-link" href="#">Staying in touch with family from the Moon</a></li>
+      </ul>
+
+      <h2 class="govuk-heading-m">Need to make changes?</h2>
+
+      <p class="govuk-body">If you need to change your travel date or cancel your booking:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Changes can be made up to 14 days before departure at no extra charge</li>
+        <li>Changes within 14 days of departure may incur a £100 amendment fee</li>
+        <li>Cancellations more than 14 days before departure will receive a full refund</li>
+        <li>Cancellations within 14 days of departure will receive a 50% refund</li>
+      </ul>
+
+      <p class="govuk-body">To make changes, call the Lunar Travel Helpline on <strong>0300 123 4567</strong> (Monday to Friday, 8am to 6pm) or <a class="govuk-link" href="#">manage your booking online</a>.</p>
+
+      <p class="govuk-body govuk-!-margin-top-6">
+        <a class="govuk-link" href="#">Print this page</a>
+      </p>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="/">Book another journey</a>
+      </p>
+
+      <h2 class="govuk-heading-m">Give feedback</h2>
+
+      <p class="govuk-body">This is a new service. <a class="govuk-link" href="#">Help us improve it by giving feedback</a>.</p>
+
+    </div>
+  </div>
+{% endblock %}
