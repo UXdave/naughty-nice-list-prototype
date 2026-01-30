@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Check your answers – Book a ticket to travel to the moon – GOV.UK
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Check your answers before submitting</h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: { text: "UK citizen" },
+            value: { text: data.ukCitizen or "Yes" },
+            actions: { items: [{ href: "/moon/eligibility", text: "Change", visuallyHiddenText: "UK citizen" }] }
+          },
+          {
+            key: { text: "Age group" },
+            value: { text: data.ageGroup or "18 to 64" },
+            actions: { items: [{ href: "/moon/eligibility", text: "Change", visuallyHiddenText: "age group" }] }
+          },
+          {
+            key: { text: "Medical assessment" },
+            value: { text: data.medicallyFit or "Yes" },
+            actions: { items: [{ href: "/moon/eligibility", text: "Change", visuallyHiddenText: "medical assessment" }] }
+          },
+          {
+            key: { text: "Employer name" },
+            value: { text: data.employerName or "UK Lunar Agency" },
+            actions: { items: [{ href: "/moon/work-details", text: "Change", visuallyHiddenText: "employer name" }] }
+          },
+          {
+            key: { text: "Employer reference" },
+            value: { text: data.employerRef or "LUNA-2045" },
+            actions: { items: [{ href: "/moon/work-details", text: "Change", visuallyHiddenText: "employer reference" }] }
+          },
+          {
+            key: { text: "Role type" },
+            value: { text: data.roleType or "Engineering and maintenance" },
+            actions: { items: [{ href: "/moon/work-details", text: "Change", visuallyHiddenText: "role type" }] }
+          },
+          {
+            key: { text: "Role summary" },
+            value: { text: data.roleSummary or "Maintain life support systems" },
+            actions: { items: [{ href: "/moon/work-details", text: "Change", visuallyHiddenText: "role summary" }] }
+          },
+          {
+            key: { text: "Preferred launch date" },
+            value: { text: (data.launchDateDay and data.launchDateMonth and data.launchDateYear) ? data.launchDateDay + " " + data.launchDateMonth + " " + data.launchDateYear : "18 7 2045" },
+            actions: { items: [{ href: "/moon/travel-details", text: "Change", visuallyHiddenText: "launch date" }] }
+          },
+          {
+            key: { text: "Moon base destination" },
+            value: { text: data.moonBase or "Shackleton Crater base" },
+            actions: { items: [{ href: "/moon/travel-details", text: "Change", visuallyHiddenText: "moon base destination" }] }
+          },
+          {
+            key: { text: "Emergency contact" },
+            value: { text: data.emergencyContact or "Morgan Ellis" },
+            actions: { items: [{ href: "/moon/travel-details", text: "Change", visuallyHiddenText: "emergency contact" }] }
+          },
+          {
+            key: { text: "Emergency contact phone" },
+            value: { text: data.emergencyPhone or "07700 900457" },
+            actions: { items: [{ href: "/moon/travel-details", text: "Change", visuallyHiddenText: "emergency contact phone" }] }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Now submit your booking</h2>
+      <p class="govuk-body">By submitting, you confirm that the information you have given is correct.</p>
+
+      <form method="post">
+        {{ govukButton({ text: "Submit booking" }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

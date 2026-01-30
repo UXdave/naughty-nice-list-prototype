@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Booking submitted – Book a ticket to travel to the moon – GOV.UK
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukPanel({
+        titleText: "Booking submitted",
+        html: "Your reference number<br><strong>LUNA-8H2K-1045</strong>"
+      }) }}
+
+      <p class="govuk-body">We have sent a confirmation email with your launch window and onboarding tasks.</p>
+
+      <h2 class="govuk-heading-m">What happens next</h2>
+      <ol class="govuk-list govuk-list--number">
+        <li>We will check your employer details.</li>
+        <li>We will contact you within 5 working days to confirm your launch date.</li>
+        <li>You will receive a schedule for training and security clearance.</li>
+      </ol>
+
+      <p class="govuk-body"><a class="govuk-link" href="/moon/start">Book another ticket</a></p>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Travel details – Book a ticket to travel to the moon – GOV.UK
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
+        <h1 class="govuk-heading-l">Travel details</h1>
+
+        {{ govukDateInput({
+          id: "launchDate",
+          namePrefix: "launchDate",
+          fieldset: {
+            legend: {
+              text: "Preferred launch date",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 18 7 2045"
+          }
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Moon base destination"
+          },
+          hint: {
+            text: "For example, Shackleton Crater base or Tycho habitat"
+          },
+          id: "moonBase",
+          name: "moonBase"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Emergency contact in the UK"
+          },
+          hint: {
+            text: "Full name"
+          },
+          id: "emergencyContact",
+          name: "emergencyContact",
+          autocomplete: "name"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Emergency contact phone number"
+          },
+          classes: "govuk-input--width-10",
+          id: "emergencyPhone",
+          name: "emergencyPhone",
+          autocomplete: "tel"
+        }) }}
+
+        {{ govukButton({ text: "Continue" }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
