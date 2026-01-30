@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Work details – Book a ticket to travel to the moon – GOV.UK
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
+        <h1 class="govuk-heading-l">Work details</h1>
+
+        {{ govukInput({
+          label: {
+            text: "Lunar employer name"
+          },
+          id: "employerName",
+          name: "employerName",
+          autocomplete: "organization"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Lunar employer reference"
+          },
+          hint: {
+            text: "This is the 10 character reference provided with your job offer."
+          },
+          id: "employerRef",
+          name: "employerRef"
+        }) }}
+
+        {{ govukSelect({
+          id: "roleType",
+          name: "roleType",
+          label: {
+            text: "Role type"
+          },
+          items: [
+            { value: "", text: "Select a role", selected: true },
+            { value: "engineering", text: "Engineering and maintenance" },
+            { value: "science", text: "Science and research" },
+            { value: "logistics", text: "Logistics and supply" },
+            { value: "health", text: "Health and wellbeing" }
+          ]
+        }) }}
+
+        {{ govukTextarea({
+          name: "roleSummary",
+          id: "roleSummary",
+          label: {
+            text: "Summary of your role on the moon"
+          },
+          hint: {
+            text: "For example, support for lunar habitats, research, or transport."
+          }
+        }) }}
+
+        {{ govukButton({ text: "Continue" }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

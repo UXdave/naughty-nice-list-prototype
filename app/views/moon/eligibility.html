@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Check eligibility – Book a ticket to travel to the moon – GOV.UK
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
+        <h1 class="govuk-heading-l">Check eligibility to travel to the moon</h1>
+
+        {{ govukRadios({
+          idPrefix: "ukCitizen",
+          name: "ukCitizen",
+          fieldset: {
+            legend: {
+              text: "Are you a UK citizen?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            { value: "yes", text: "Yes" },
+            { value: "no", text: "No" }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "ageGroup",
+          name: "ageGroup",
+          fieldset: {
+            legend: {
+              text: "Which age group are you in?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            { value: "18-64", text: "18 to 64" },
+            { value: "under-18", text: "Under 18" },
+            { value: "65-plus", text: "65 or over" }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "medicallyFit",
+          name: "medicallyFit",
+          fieldset: {
+            legend: {
+              text: "Have you passed the lunar medical and safety assessment?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            { value: "yes", text: "Yes" },
+            { value: "no", text: "No" }
+          ]
+        }) }}
+
+        {{ govukButton({ text: "Continue" }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

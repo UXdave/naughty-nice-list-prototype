@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Safety declarations – Book a ticket to travel to the moon – GOV.UK
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
+        <h1 class="govuk-heading-l">Safety declarations</h1>
+
+        <p class="govuk-body">You must agree to the declarations before you can book a ticket.</p>
+
+        {{ govukCheckboxes({
+          idPrefix: "declarations",
+          name: "declarations",
+          items: [
+            {
+              value: "medical",
+              text: "I agree to follow the lunar medical and safety procedures."
+            },
+            {
+              value: "training",
+              text: "I will complete pre-flight training and emergency drills."
+            },
+            {
+              value: "conduct",
+              text: "I understand the UK Government code of conduct applies on the moon."
+            }
+          ]
+        }) }}
+
+        {{ govukButton({ text: "Continue" }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
