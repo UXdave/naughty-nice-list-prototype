@@ -1,44 +1,111 @@
-
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  GOV.UK Prototype Kit
+  Book lunar work travel - GOV.UK
+{% endblock %}
+
+{% block header %}
+  {% include "includes/cookie-banner.html" %}
+  {{ govukHeader({
+    homepageUrl: "https://www.gov.uk/",
+    serviceName: serviceName,
+    serviceUrl: "/",
+    containerClasses: "govuk-width-container"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
 {% endblock %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">
-        The GOV.UK Prototype Kit
-        <span class="govuk-caption-xl">{{releaseVersion}}</span>
-      </h1>{{releaseVersion | log }}
-      <p>
-        This kit lets you rapidly create HTML prototypes of GOV.UK services.
-      </p>
 
-      <p>
-        It contains all you need to prototype anything from simple static pages to complex, data-driven transactions.
-      </p>
+      <h1 class="govuk-heading-xl">Book travel to the Moon for work</h1>
 
-      <h2 class="govuk-heading-m">About this page</h2>
+      <p class="govuk-body">Use this service to book a ticket on the UK Lunar Transport Programme to travel to the Moon for employment purposes.</p>
 
-      <p>We recommend you add links to your prototype to this page, rather than delete it.
-        You'll find this page in the kit at '/app/views/index.html'.</p>
+      <p class="govuk-body">The UK Lunar Transport Programme provides safe, regulated travel for UK citizens who have secured employment contracts with approved lunar employers.</p>
 
-      <p>You can change the service name by editing the file '/app/config.js'.</p>
+      <h2 class="govuk-heading-m">Who can use this service</h2>
 
-      <h2 class="govuk-heading-m">Examples and documentation</h2>
+      <p class="govuk-body">You can apply for lunar work travel if you:</p>
 
       <ul class="govuk-list govuk-list--bullet">
-        <li>
-          <a href="/docs/tutorials-and-examples">Example pages and documentation</a>
-        </li>
-        <li>
-          <a href="https://design-system.service.gov.uk">GOV.UK Design System</a>
-        </li>
+        <li>are a UK citizen</li>
+        <li>are aged 18 or over</li>
+        <li>have a valid employment contract with an approved lunar employer</li>
+        <li>hold a valid UK passport with at least 2 years remaining</li>
+        <li>have passed the mandatory Lunar Health Assessment</li>
       </ul>
+
+      <h2 class="govuk-heading-m">What you'll need</h2>
+
+      <p class="govuk-body">To complete this application, you'll need:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>your National Insurance number</li>
+        <li>your UK passport number</li>
+        <li>your lunar employment contract reference number</li>
+        <li>your employer's Lunar Operations Licence number</li>
+        <li>your Lunar Health Assessment certificate number</li>
+      </ul>
+
+      {{ govukInsetText({
+        text: "Lunar travel bookings must be made at least 28 days before your intended departure date."
+      }) }}
+
+      <h2 class="govuk-heading-m">Cost</h2>
+
+      <p class="govuk-body">The booking fee is £250. Your employer may cover this cost - check your employment contract.</p>
+
+      <p class="govuk-body">The booking process takes around 15 minutes.</p>
+
+      {{ govukButton({
+        text: "Start now",
+        href: "/eligibility/uk-citizen",
+        isStartButton: true
+      }) }}
+
+      <h2 class="govuk-heading-m">Before you start</h2>
+
+      <p class="govuk-body">You can also <a class="govuk-link" href="#">read the guidance on lunar employment travel</a> for more information about:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>what to expect during lunar travel</li>
+        <li>your rights as a lunar worker</li>
+        <li>health and safety requirements</li>
+        <li>approved lunar employers</li>
+      </ul>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      <aside class="govuk-!-margin-top-6">
+        <h2 class="govuk-heading-s">Related content</h2>
+        <nav role="navigation" aria-label="Related content">
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <a class="govuk-link" href="#">Check if you need a Lunar Health Assessment</a>
+            </li>
+            <li>
+              <a class="govuk-link" href="#">Find approved lunar employers</a>
+            </li>
+            <li>
+              <a class="govuk-link" href="#">Lunar worker rights and protections</a>
+            </li>
+            <li>
+              <a class="govuk-link" href="#">Apply for a UK passport</a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
     </div>
   </div>
-
 {% endblock %}

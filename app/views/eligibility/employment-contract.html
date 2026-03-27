@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Do you have a valid lunar employment contract? - Book lunar work travel - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/eligibility/age"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/eligibility/employment-contract-answer" method="post">
+
+        {{ govukRadios({
+          name: "has-employment-contract",
+          fieldset: {
+            legend: {
+              text: "Do you have a valid lunar employment contract?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Your employer must hold a valid Lunar Operations Licence issued by the UK Space Agency."
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes, I have a contract with an approved lunar employer",
+              checked: checked("has-employment-contract", "yes")
+            },
+            {
+              value: "no",
+              text: "No, I do not have a lunar employment contract",
+              checked: checked("has-employment-contract", "no")
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

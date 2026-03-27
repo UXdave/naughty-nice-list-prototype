@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  You cannot use this service - Book lunar work travel - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">You cannot use this service</h1>
+
+      {% if data['uk-citizen'] == 'no' %}
+        <p class="govuk-body">You must be a UK citizen to use the UK Lunar Transport Programme.</p>
+        <p class="govuk-body">If you are a citizen of another country, you may be able to apply through your country's lunar travel programme, if one exists.</p>
+        <h2 class="govuk-heading-m">What you can do</h2>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><a class="govuk-link" href="#">Check if you're eligible for UK citizenship</a></li>
+          <li><a class="govuk-link" href="#">Find international lunar travel programmes</a></li>
+        </ul>
+      {% elseif data['over-18'] == 'no' %}
+        <p class="govuk-body">You must be 18 or over to travel to the Moon for work.</p>
+        <p class="govuk-body">This is a legal requirement under the Space Employment Act 2024.</p>
+        <h2 class="govuk-heading-m">What you can do</h2>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><a class="govuk-link" href="#">Read about lunar careers for young people</a></li>
+          <li><a class="govuk-link" href="#">Find lunar education and training programmes</a></li>
+        </ul>
+      {% elseif data['has-employment-contract'] == 'no' %}
+        <p class="govuk-body">You must have a valid employment contract with an approved lunar employer before you can book travel.</p>
+        <p class="govuk-body">The UK Lunar Transport Programme is for employment travel only. Tourist travel to the Moon is not currently available.</p>
+        <h2 class="govuk-heading-m">What you can do</h2>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><a class="govuk-link" href="#">Search for lunar job opportunities</a></li>
+          <li><a class="govuk-link" href="#">View list of approved lunar employers</a></li>
+          <li><a class="govuk-link" href="#">Get career advice for lunar employment</a></li>
+        </ul>
+      {% elseif data['has-health-assessment'] == 'no' %}
+        <p class="govuk-body">You must pass the Lunar Health Assessment before you can book travel to the Moon.</p>
+        <p class="govuk-body">The assessment ensures you are physically and mentally fit for lunar travel and work conditions.</p>
+        <h2 class="govuk-heading-m">What you can do</h2>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><a class="govuk-link" href="#">Book a Lunar Health Assessment</a></li>
+          <li><a class="govuk-link" href="#">Find an approved assessment centre</a></li>
+          <li><a class="govuk-link" href="#">Read about what the assessment involves</a></li>
+        </ul>
+      {% else %}
+        <p class="govuk-body">Based on your answers, you are not eligible to use this service at this time.</p>
+        <h2 class="govuk-heading-m">What you can do</h2>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><a class="govuk-link" href="/">Start again and check your eligibility</a></li>
+          <li><a class="govuk-link" href="#">Contact the Lunar Travel Helpline</a></li>
+        </ul>
+      {% endif %}
+
+      <p class="govuk-body govuk-!-margin-top-6">
+        <a class="govuk-link" href="/">Return to the start page</a>
+      </p>
+
+    </div>
+  </div>
+{% endblock %}

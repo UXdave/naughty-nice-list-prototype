@@ -1,0 +1,201 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Your travel preferences - Book lunar work travel - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/employment-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Your travel preferences</h1>
+
+      <form class="form" action="/health-declaration" method="post">
+
+        {{ govukDateInput({
+          id: "departure-date",
+          namePrefix: "departure-date",
+          fieldset: {
+            legend: {
+              text: "Preferred departure date",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "Enter your preferred departure date. This must be at least 28 days from today. For example, 15 6 2026."
+          },
+          items: [
+            {
+              name: "day",
+              classes: "govuk-input--width-2",
+              value: data['departure-date-day']
+            },
+            {
+              name: "month",
+              classes: "govuk-input--width-2",
+              value: data['departure-date-month']
+            },
+            {
+              name: "year",
+              classes: "govuk-input--width-4",
+              value: data['departure-date-year']
+            }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          name: "departure-location",
+          fieldset: {
+            legend: {
+              text: "UK departure spaceport",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "Select your preferred UK spaceport for departure."
+          },
+          items: [
+            {
+              value: "spaceport-cornwall",
+              text: "Spaceport Cornwall (Newquay)",
+              hint: {
+                text: "South West England"
+              },
+              checked: checked("departure-location", "spaceport-cornwall")
+            },
+            {
+              value: "sutherland-spaceport",
+              text: "Sutherland Spaceport",
+              hint: {
+                text: "Scottish Highlands"
+              },
+              checked: checked("departure-location", "sutherland-spaceport")
+            },
+            {
+              value: "shetland-space-centre",
+              text: "Shetland Space Centre",
+              hint: {
+                text: "Shetland Islands"
+              },
+              checked: checked("departure-location", "shetland-space-centre")
+            },
+            {
+              value: "snowdonia-spaceport",
+              text: "Snowdonia Aerospace Centre",
+              hint: {
+                text: "North Wales"
+              },
+              checked: checked("departure-location", "snowdonia-spaceport")
+            }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          name: "travel-class",
+          fieldset: {
+            legend: {
+              text: "Travel class",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "Your employer may specify which class you can book. Check your employment contract."
+          },
+          items: [
+            {
+              value: "standard",
+              text: "Standard",
+              hint: {
+                text: "Shared cabin (4 passengers), standard meals and entertainment. Included in booking fee."
+              },
+              checked: checked("travel-class", "standard")
+            },
+            {
+              value: "premium",
+              text: "Premium",
+              hint: {
+                text: "Shared cabin (2 passengers), enhanced meals and priority boarding. Additional £500."
+              },
+              checked: checked("travel-class", "premium")
+            },
+            {
+              value: "private",
+              text: "Private cabin",
+              hint: {
+                text: "Private single-occupancy cabin, gourmet meals and dedicated crew. Additional £2,000."
+              },
+              checked: checked("travel-class", "private")
+            }
+          ]
+        }) }}
+
+        {{ govukCheckboxes({
+          name: "special-requirements",
+          fieldset: {
+            legend: {
+              text: "Do you have any special requirements?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "Select all that apply."
+          },
+          items: [
+            {
+              value: "dietary-requirements",
+              text: "Dietary requirements (vegetarian, vegan, halal, kosher, allergies)",
+              checked: checked("special-requirements", "dietary-requirements")
+            },
+            {
+              value: "mobility-assistance",
+              text: "Mobility assistance",
+              checked: checked("special-requirements", "mobility-assistance")
+            },
+            {
+              value: "medical-equipment",
+              text: "Need to bring medical equipment",
+              checked: checked("special-requirements", "medical-equipment")
+            },
+            {
+              value: "extra-baggage",
+              text: "Extra baggage allowance required",
+              checked: checked("special-requirements", "extra-baggage")
+            }
+          ]
+        }) }}
+
+        {{ govukTextarea({
+          name: "additional-needs",
+          id: "additional-needs",
+          value: data['additional-needs'],
+          label: {
+            text: "Please provide details of any special requirements (optional)",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "Include any specific dietary needs, medical conditions we should be aware of, or accessibility requirements."
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
